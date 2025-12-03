@@ -9,16 +9,16 @@ public class Main {
         SecretKey key = new SecretKeySpec("12345678".getBytes(), "DES");
 
         // Create DES cipher
-        Cipher cipher = Cipher.getInstance("DES");
+        Cipher c = Cipher.getInstance("DES");
 
         // Encrypt
-        cipher.init(Cipher.ENCRYPT_MODE, key);
-        byte[] encrypted = cipher.doFinal("HELLO".getBytes());
+        c.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encrypted = c.doFinal("HELLO".getBytes());
         System.out.println("Encrypted: " + Base64.getEncoder().encodeToString(encrypted));
 
         // Decrypt
-        cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] decrypted = cipher.doFinal(encrypted);
+        c.init(Cipher.DECRYPT_MODE, key);
+        byte[] decrypted = c.doFinal(encrypted);
         System.out.println("Decrypted: " + new String(decrypted));
     }
 }
