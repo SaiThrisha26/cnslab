@@ -5,20 +5,20 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        // 16-byte AES key
+        // AES key must be 16 bytes
         SecretKey key = new SecretKeySpec("1234567812345678".getBytes(), "AES");
 
         // Create AES cipher
-        Cipher cipher = Cipher.getInstance("AES");
+        Cipher c = Cipher.getInstance("AES");
 
         // Encrypt
-        cipher.init(Cipher.ENCRYPT_MODE, key);
-        byte[] encrypted = cipher.doFinal("HELLO".getBytes());
+        c.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encrypted = c.doFinal("HELLO".getBytes());
         System.out.println("Encrypted: " + Base64.getEncoder().encodeToString(encrypted));
 
         // Decrypt
-        cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] decrypted = cipher.doFinal(encrypted);
+        c.init(Cipher.DECRYPT_MODE, key);
+        byte[] decrypted = c.doFinal(encrypted);
         System.out.println("Decrypted: " + new String(decrypted));
     }
 }
